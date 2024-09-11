@@ -6,10 +6,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import TimeoutException, NoSuchWindowException
 
 load_dotenv("facebook.env")
-# EMAIL = os.getenv("email")
-# PASSWORD = os.getenv("key")
-EMAIL ="Hello Test"
-PASSWORD = "123456789"
+EMAIL = os.getenv("email")
+PASSWORD = os.getenv("key")
+# EMAIL ="Hello Test"
+# PASSWORD = "123456789"
 
 config={
     "bot_prevention": "config_1",
@@ -39,7 +39,7 @@ def login_to_tinder():#dont forget
             if email_field and password_field and login_button :
                 email_field.send_keys(EMAIL)
                 password_field.send_keys(PASSWORD) 
-                # login_button.click() 
+                login_button.click() 
                 
                 
                 input("Close the browser by pressing 'ENTER KEY'")

@@ -89,6 +89,26 @@ class CustomWebdriver:
         except TimeoutException:
             print(f"Element not clickable: {by}={value}")
             return False
+        
+    def close_extra_popups(self):
+        main_window = self.driver.current_window_handle
+        for handle in self.driver.window_handles:
+            if handle != main_window:
+                self.driver.switch_to.window(handle)
+                self.driver.close()
+        self.driver.switch_to.window(main_window)  
+    
+    def wait_for_element_text(self, *element, timeout=120):
+        element_list=[]
+        try:
+            for i in element:
+                WebDriverWait(self.driver, timeout).until(
+                    lambda d: i.text != '—' and i.text != ''
+                )
+                element_list.append(i.text)   
+            return element_list  
+        except Exception as e:
+            print(f"error: {e}")
 
     def quit(self):
         if self.driver:
